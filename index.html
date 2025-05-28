@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveen Reddy - Software Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            --bg-color: #f8f9fa;
+            --container-bg: #ffffff;
+            --text-color: #343a40;
+            --heading-color: #212529;
+            --primary-color: #007bff;
+            --accent-color: #6f42c1; /* Purple accent */
+            --border-color: #e9ecef;
+            --box-shadow-light: rgba(0, 0, 0, 0.08);
+            --box-shadow-medium: rgba(0, 0, 0, 0.12);
+            --card-bg: #ffffff;
+            --link-color: #007bff;
+            --link-hover-color: #0056b3;
+            --button-bg: var(--primary-color);
+            --button-text: #ffffff;
+            --button-hover-bg: var(--link-hover-color);
+            --skill-bar-bg: #e0e0e0;
+            --skill-bar-fill: var(--primary-color);
+            --scroll-btn-bg: var(--primary-color);
+            --scroll-btn-hover-bg: var(--link-hover-color);
+        }
+
+        body.dark-mode {
+            --bg-color: #212529;
+            --container-bg: #2b3035;
+            --text-color: #e0e0e0;
+            --heading-color: #f8f9fa;
+            --primary-color: #6a0dad; /* Darker purple for primary */
+            --accent-color: #8c7ae6; /* Lighter purple for accent */
+            --border-color: #495057;
+            --box-shadow-light: rgba(0, 0, 0, 0.3);
+            --box-shadow-medium: rgba(0, 0, 0, 0.4);
+            --card-bg: #343a40;
+            --link-color: #8c7ae6;
+            --link-hover-color: #a29bfe;
+            --button-bg: var(--primary-color);
+            --button-text: #ffffff;
+            --button-hover-bg: var(--link-hover-color);
+            --skill-bar-bg: #495057;
+            --skill-bar-fill: var(--accent-color);
+            --scroll-btn-bg: var(--primary-color);
+            --scroll-btn-hover-bg: var(--link-hover-color);
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            background: var(--container-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--box-shadow-light);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Header and Contact Info */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            position: relative; /* For dark mode toggle */
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--heading-color);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 1.1em;
+            color: var(--contact-text);
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .contact-info a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+
+        .download-resume {
+            margin-top: 15px;
+        }
+        .download-resume .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .download-resume .button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Dark Mode Toggle */
+        #darkModeToggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: color 0.3s;
+            outline: none;
+        }
+        #darkModeToggle:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+        .hero-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: var(--heading-color);
+            margin-bottom: 15px;
+        }
+        .hero-section p {
+            font-size: 1.3em;
+            color: var(--contact-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+
+        /* Sections */
+        .section {
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary-color);
+            font-size: 2em;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        /* About Me */
+        .about-me p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        /* Skills Section (Revised) */
+        .skills-list {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .skill-item {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--box-shadow-dark);
+            transition: box-shadow 0.3s;
+        }
+        .skill-item:hover {
+             box-shadow: 0 4px 12px var(--box-shadow-light);
+        }
+        .skill-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .skill-item .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-item .skill-tag {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+        }
+        .skill-bar-container {
+            background-color: var(--skill-bar-bg);
+            border-radius: 5px;
+            height: 8px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .skill-bar-fill {
+            background-color: var(--skill-bar-fill);
+            height: 100%;
+            width: 0%; /* Initial state for animation */
+            border-radius: 5px;
+            transition: width 1s ease-out; /* Animation */
+        }
+        .skill-item.animated .skill-bar-fill {
+            /* Width will be set by JS on animation */
+        }
+
+        /* Experience Items */
+        .experience-item {
+            margin-bottom: 35px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 3px 10px var(--box-shadow-dark);
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+            overflow: hidden; /* For expandable content */
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px var(--box-shadow-light);
+        }
+
+        .experience-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--heading-color);
+            font-size: 1.6em;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .experience-item p strong {
+            color: var(--secondary-color);
+        }
+
+        .experience-item p {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-size: 0.95em;
+        }
+
+        .experience-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .project-details-container {
+            max-height: 150px; /* Initial height for compressed view */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .project-details-container.expanded {
+            max-height: 1000px; /* Large enough to show all content */
+        }
+
+        .project-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-details ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-size: 0.98em;
+        }
+
+        .project-details ul li::before {
+            content: '•';
+            color: var(--primary-color);
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .read-more-btn {
+            display: block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: var(--accent-color);
+            color: var(--button-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .read-more-btn:hover {
+            background-color: #5a32a0; /* Darker accent */
+        }
+        body.dark-mode .read-more-btn:hover {
+            background-color: #a29bfe; /* Lighter accent for dark mode */
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--box-shadow-dark);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .education-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--heading-color);
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        /* Contact Form */
+        .contact-form form {
+            display: grid;
+            gap: 15px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--box-shadow-dark);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .contact-form label {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--bg-color); /* Lighter input background */
+            color: var(--text-color);
+            transition: border-color 0.3s, background-color 0.3s;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact-form button {
+            padding: 12px 25px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .contact-form button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px);
+        }
+
+
+        /* Scroll to Top Button */
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--scroll-btn-bg);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            box-shadow: 0 4px 12px var(--box-shadow-light);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: var(--scroll-btn-hover-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--box-shadow-medium);
+        }
+
+        /* Animation Classes */
+        .animate-on-scroll.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+            .hero-section h2 {
+                font-size: 1.8em;
+            }
+            .hero-section p {
+                font-size: 1em;
+            }
+            .experience-item h3 {
+                font-size: 1.3em;
+            }
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+            #darkModeToggle {
+                top: 15px;
+                right: 15px;
+                font-size: 1.2em;
+            }
+            #scrollToTopBtn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="container">
+        <header>
+            <h1>Naveen Reddy</h1>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:naveen.reddy0509@gmail.com">naveen.reddy0509@gmail.com</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/naveenreddy0509/" target="_blank">linkedin.com/in/naveenreddy0509</a></p>
+                <p>Phone: +1682-777-4767</p>
+            </div>
+            <div class="download-resume">
+                <a href="Naveen_Reddy 2.docx" class="button" download="Naveen_Reddy_Resume.docx">Download My Resume (Word Document)</a>
+                </div>
+            <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
+        </header>
+
+        <section class="section hero-section animate-on-scroll hidden">
+            <h2>Building Scalable Solutions for Tomorrow's Challenges</h2>
+            <p>Dedicated Full Stack Java Developer with 8+ years of experience, passionate about transforming complex requirements into high-performing, user-focused applications leveraging modern cloud and AI technologies.</p>
+        </section>
+
+        <section class="section about-me animate-on-scroll hidden">
+            <h2>About Me</h2>
+            <p>I'm a dedicated and results-oriented software developer that enjoys tackling challenging issues and producing excellent, user-focused applications.</p>
+            <p>In order to transform requirements into scalable solutions, I like collaborating closely with cross-functional teams, including product owners, designers, QA, and DevOps.</p>
+            <p>In order to promote an innovative and high-achieving culture, I'm dedicated to lifelong learning, keeping up with new developments in technology and best practices, and coaching colleagues.</p>
+            <p>I enjoy contributing to open-source projects, learning new coding frameworks, and honing my abilities at technical meetups and workshops when I'm not working.</p>
+        </section>
+
+        <section class="section skills animate-on-scroll hidden">
+            <h2>Technical Skills</h2>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <h4>Programming Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java 6/7/8/17</span>
+                        <span class="skill-tag">PL/SQL</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" data-proficiency="95"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h4>Frameworks & Libraries</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Spring</span>
+                        <span class="skill-tag">Hibernate</span>
+                        <span class="skill-tag">JPA</span>
+                        <span class="skill-tag">ReactJS</span>
+                        <span class="skill-tag">Angular (2-10)</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">NestJS</span>
+                        <span class="skill-tag">LangChain</span>
+                    </div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" data-proficiency="90"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h4>Cloud Platforms</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS (EC2, S3, Lambda, ECS, DynamoDB, API Gateway, SNS, SQS, CloudWatch, IAM)</span>
+                        <span class="skill-tag">Azure (Event Hub, Queue Storage, Functions, AD, Monitor)</span>
+                        <span class="skill-tag">GCP (Terraform)</span>
+                    </div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" data-proficiency="88"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h4>DevOps & CI/CD</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes (EKS)</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">SonarQube</span>
+                        <span class="skill-tag">Maven</span>
+                        <span class="skill-tag">Gradle</span>
+                    </div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" data-proficiency="85"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h4>Databases & Messaging</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Cassandra</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">Kafka</span>
+                        <span class="skill-tag">ActiveMQ</span>
+                    </div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" data-proficiency="87"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h4>Tools & Methodologies</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile (SAFe)</span>
+                        <span class="skill-tag">Test-Driven Development</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Confluence</span>
+                        <span class="skill-tag">Git (GitHub, GitLab, Bitbucket)</span>
+                        <span class="skill-tag">Splunk</span>
+                        <span class="skill-tag">Datadog</span>
+                    </div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" data-proficiency="90"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section professional-experience animate-on-scroll hidden">
+            <h2>Professional Experience</h2>
+
+            <div class="experience-item">
+                <h3>Mid-Senior Java Developer - Samsung Research America, CA</h3>
+                <p>Jan 2024 – March 2025</p>
+                <p><strong>Project Name:</strong> Smart Things and Digital Care Hub</p>
+                <p><strong>Project Description:</strong> Development of a digital health support application to monitor user metrics like calorie intake, integrate 3rd party APIs, and deliver smart care insights.</p>
+                <div class="project-details-container">
+                    <h4>Role & Contributions:</h4>
+                    <div class="project-details">
+                        <ul>
+                            <li>Migrated legacy <strong>Java 8</strong> to <strong>Python</strong>, enhancing efficiency.</li>
+                            <li>Built scalable <strong>microservices</strong> with 3rd party API integration, deployed on <strong>AWS ECS</strong>.</li>
+                            <li>Engineered high-performance <strong>RESTful APIs</strong> using <strong>NestJS</strong> and <strong>TypeScript</strong>, with DTO validation and dependency injection.</li>
+                            <li>Conducted rigorous code reviews on <strong>GitHub/GitLab</strong>, improving quality and test coverage.</li>
+                            <li>Designed resilient serverless data-ingestion pipelines on <strong>AWS (Lambda, Step Functions, S3)</strong> for diverse data formats.</li>
+                            <li>Led end-to-end OneTrust CMP integration, developing UI and wiring vendor-consent APIs.</li>
+                            <li>Managed infrastructure-as-code with <strong>AWS CDK</strong> and orchestrated <strong>CI/CD</strong> via <strong>GitHub Actions</strong>.</li>
+                            <li>Documented services with <strong>Swagger/OpenAPI</strong> for efficient front-end integration.</li>
+                            <li>Implemented robust API security using <strong>Azure AD OAuth2</strong> and <strong>Ping Identity SSO</strong>, enforcing RBAC.</li>
+                            <li>Participated in <strong>SAFe Agile</strong> ceremonies, driving continuous value delivery.</li>
+                            <li>Integrated <strong>GPT-4</strong> via <strong>LangChain</strong> into microservices, built <strong>RAG pipelines</strong>, and fine-tuned <strong>BERT</strong> models, boosting contextual insights by 40%.</li>
+                            <li>Containerized and orchestrated <strong>microservices</strong> on <strong>Kubernetes (EKS)</strong>, managing deployments and scaling.</li>
+                            <li>Developed dynamic <strong>GWT</strong>-based UI modules, improving load times by 20%.</li>
+                            <li>Mentored junior developers on best practices and design patterns.</li>
+                            <li>Applied <strong>OWASP Top 10</strong> and secure coding guidelines, conducting security reviews.</li>
+                            <li>Owned end-to-end <strong>CI/CD</strong> pipelines using <strong>Jenkins</strong> and <strong>GitHub Actions</strong>.</li>
+                            <li>Led a $2M IT transformation initiative, coordinating design, development, TDM, and deployment via <strong>Jira/SharePoint</strong>.</li>
+                            <li>Facilitated <strong>Agile</strong> ceremonies, improving team velocity by 25%.</li>
+                            <li>Implemented Test Data Management and middleware integration using <strong>Azure Event Hub</strong> and <strong>AWS Lambda</strong>, boosting throughput by 30%.</li>
+                            <li>Managed critical production incidents, ensuring near-zero downtime.</li>
+                            <li>Optimized <strong>J2EE</strong> applications for performance and scalability.</li>
+                            <li>Developed and tested core consent-routing workflows, delivering live demos.</li>
+                            <li>Integrated <strong>REST APIs</strong> using <strong>JavaScript `fetch()`</strong> and <strong>`XMLHttpRequest`</strong>.</li>
+                            <li>Designed scalable <strong>Azure Event Hub</strong> architectures for telemetric data ingestion.</li>
+                            <li>Developed <strong>Java</strong>-based <strong>Azure Functions</strong> with event triggers, implementing retry policies.</li>
+                            <li>Integrated components with <strong>Azure Queue Storage</strong> for asynchronous messaging.</li>
+                            <li>Leveraged <strong>Azure Monitor, Resource Manager</strong>, and <strong>Azure AD</strong> for comprehensive cloud management.</li>
+                            <li>Diagnosed and resolved build/runtime issues in <strong>Azure Function Apps</strong> and <strong>Event Hub</strong> pipelines.</li>
+                            <li>Implemented scalable <strong>serverless microservices</strong> using <strong>AWS Lambda, API Gateway</strong>, and <strong>DynamoDB</strong>.</li>
+                            <li>Optimized caching with <strong>Redis</strong> and performed relational modeling in <strong>PostgreSQL</strong>.</li>
+                            <li>Configured messaging and monitoring with <strong>AWS SNS, SQS, IAM roles</strong>, and <strong>CloudWatch</strong>.</li>
+                            <li>Adhered to <strong>MVC</strong> and <strong>SOLID principles</strong> in <strong>ASP.NET</strong> projects.</li>
+                            <li>Utilized <strong>ADO.NET</strong> and <strong>ColdFusion</strong> data sources for <strong>SQL Server/Oracle</strong> database interaction.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+            </div>
+
+            <div class="experience-item">
+                <h3>Full Stack Java Developer - BNY, NY</h3>
+                <p>Feb 2023 – Dec 2023</p>
+                <p><strong>Project Name:</strong> Financial Dashboard and Alerts</p>
+                <p><strong>Project Description:</strong> Dashboard application to track financial transactions and trends with real-time alerting features.</p>
+                <div class="project-details-container">
+                    <h4>Role & Contributions:</h4>
+                    <div class="project-details">
+                        <ul>
+                            <li>Developed dynamic UIs with <strong>Angular 8</strong>, creating reusable components.</li>
+                            <li>Configured <strong>Terraform</strong> for seamless multi-cloud deployments (<strong>AWS, GCP, Azure</strong>).</li>
+                            <li>Engineered robust backend <strong>microservices</strong> with <strong>Spring Boot</strong>.</li>
+                            <li>Designed real-time data streaming pipelines with <strong>Kafka</strong> and <strong>Apache Spark</strong>.</li>
+                            <li>Managed cloud deployments and storage using <strong>AWS EC2</strong> and <strong>S3</strong>.</li>
+                            <li>Utilized <strong>Apache Spark</strong> for large-scale data processing, reducing analysis time.</li>
+                            <li>Defined UI solutions and provisioned test environments using <strong>Visual Studio</strong> & <strong>SQL Server Studio</strong>.</li>
+                            <li>Managed application configurations across environments using <strong>Spring Boot</strong> properties and <strong>.yml</strong> files.</li>
+                            <li>Led development of a critical <strong>Spring Boot</strong> payment microservice, defining transaction schemas and retry logic.</li>
+                            <li>Applied various <strong>J2EE design patterns</strong> (Singleton, Factory, Builder) for modular code.</li>
+                            <li>Developed and maintained enterprise applications using core <strong>J2EE</strong> technologies.</li>
+                            <li>Constructed efficient <strong>ETL pipelines</strong> using <strong>AWS Glue</strong>.</li>
+                            <li>Generated dynamic content with <strong>Razor syntax</strong> in <strong>ASP.NET MVC</strong>.</li>
+                            <li>Implemented comprehensive logging and error handling in <strong>ASP.NET</strong>.</li>
+                            <li>Designed robust batch processing workflows using <strong>Spring Batch</strong>.</li>
+                            <li>Optimized caching with <strong>Redis</strong> and performed relational modeling in <strong>PostgreSQL</strong>.</li>
+                            <li>Developed custom <strong>Angular 8</strong> directives for <strong>WCAG 2.1</strong> compliance, enhancing accessibility.</li>
+                            <li>Integrated automated accessibility testing (<strong>axe-core, Lighthouse</strong>) into <strong>CI/CD</strong>, remediating 95% of issues.</li>
+                            <li>Developed secure <strong>Spring Boot REST APIs</strong> with <strong>`@RestController`</strong> and <strong>Swagger/OpenAPI</strong>.</li>
+                            <li>Constructed and documented <strong>Spring MVC/REST</strong> endpoints with DTO validation and error-handling.</li>
+                            <li>Authored <strong>CloudFormation</strong> templates for <strong>AWS</strong> services (CloudFront, SES, SNS, SQS).</li>
+                            <li>Collaborated with UX designers on inclusive design principles and usability tests.</li>
+                            <li>Enhanced <strong>Angular 8</strong> dashboard for <strong>ADA compliance</strong> with <strong>ARIA attributes</strong> and keyboard navigation.</li>
+                            <li>Collaborated on strategic service design, optimizing performance and scalability with <strong>Spring Boot</strong> and <strong>AWS</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+            </div>
+
+            <div class="experience-item">
+                <h3>Full Stack Java Developer - Freddie Mac, VA</h3>
+                <p>Aug 2021 – Feb 2023</p>
+                <p><strong>Project Name:</strong> Wealth Management Platform</p>
+                <p><strong>Project Description:</strong> Microservices-based investment tracking and customer portfolio management system.</p>
+                <div class="project-details-container">
+                    <h4>Role & Contributions:</h4>
+                    <div class="project-details">
+                        <ul>
+                            <li>Developed and deployed scalable <strong>microservices</strong> using <strong>Spring Boot</strong> on <strong>AWS</strong>.</li>
+                            <li>Engineered dynamic front-end applications with <strong>React, Redux</strong>, and <strong>TypeScript</strong>.</li>
+                            <li>Implemented accessibility features in <strong>AngularJS</strong> directives, boosting keyboard usability.</li>
+                            <li>Established and maintained robust <strong>CI/CD</strong> pipelines using <strong>GitLab</strong>.</li>
+                            <li>Integrated front-end technologies (<strong>HTML, CSS, JavaScript, jQuery</strong>) within <strong>ASP.NET</strong> views.</li>
+                            <li>Managed and secured application configurations using <strong>Azure Vault</strong>.</li>
+                            <li>Actively engaged in the full <strong>DevOps SDLC</strong>.</li>
+                            <li>Collaborated with UBS internal deployment tools (RLC and DA).</li>
+                            <li>Developed applications with <strong>React.js</strong> and <strong>Node.js</strong>, leveraging <strong>NPM, Gulp</strong>, and Flux.</li>
+                            <li>Built feature-rich applications using various <strong>JavaScript frameworks/libraries</strong>.</li>
+                            <li>Collaborated with cross-functional teams for process improvements.</li>
+                            <li>Mapped complex entity relationships using <strong>JPA annotations</strong> and <strong>XML configuration</strong>.</li>
+                            <li>Enhanced legacy UIs with <strong>HTML5, CSS3 flexbox/grid</strong>, and <strong>jQuery</strong> plugins.</li>
+                            <li>Proactively triaged and resolved critical production bugs, documenting root causes.</li>
+                            <li>Provided <strong>L2 support</strong> for <strong>Java/Node.js microservices</strong>, resolving ~20 ServiceNow tickets/week.</li>
+                            <li>Utilized <strong>Splunk</strong> and <strong>Datadog</strong> for error triage and root-cause analysis.</li>
+                            <li>Executed post-deployment validation, coordinating with <strong>DevOps</strong> for zero-downtime rollouts.</li>
+                            <li>Developed unit/integration test suites with <strong>Jest</strong> and <strong>Mocha</strong>, achieving >85% coverage.</li>
+                            <li>Optimized <strong>Node.js</strong> event loop and memory usage; implemented clustering for scaling.</li>
+                            <li>Conducted root cause analysis for operational and system improvements.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+            </div>
+
+            <div class="experience-item">
+                <h3>Java Full Stack Developer - Infosys, India</h3>
+                <p>July 2017 – Nov 2020</p>
+                <p><strong>Project Name:</strong> Digital HR and Intranet Portal</p>
+                <p><strong>Project Description:</strong> Web portal to manage HR functions like onboarding, leave tracking, and internal communication.</p>
+                <div class="project-details-container">
+                    <h4>Role & Contributions:</h4>
+                    <div class="project-details">
+                        <ul>
+                            <li>Implemented full-stack features using <strong>MEAN stack (MongoDB, ExpressJS, AngularJS, Node.js)</strong> and <strong>ReactJS</strong>.</li>
+                            <li>Containerized <strong>microservices</strong> using <strong>Docker</strong>.</li>
+                            <li>Integrated <strong>ColdFusion</strong> services with <strong>ASP.NET APIs</strong> for cross-platform data exchange.</li>
+                            <li>Applied <strong>MVC architecture</strong> and developed <strong>ColdFusion Components (CFCs)</strong> for modular code.</li>
+                            <li>Designed reusable frontend components using <strong>AngularJS</strong> and <strong>ReactJS</strong>.</li>
+                            <li>Developed <strong>RESTful services</strong> and API endpoints using <strong>Node.js</strong> and <strong>Express</strong>.</li>
+                            <li>Integrated forms with client-side validation using <strong>HTML5</strong> attributes.</li>
+                            <li>Supported UAT by preparing test scenarios, executing cases, and logging defects.</li>
+                            <li>Collaborated with QA for feature parity and regression testing.</li>
+                            <li>Performed server-side programming using <strong>J2EE</strong> for transaction management, pooling, and caching.</li>
+                            <li>Applied <strong>JavaScript</strong> in <strong>AJAX</strong>-based calls for dynamic content updates.</li>
+                            <li>Designed data persistence layers using <strong>JPA</strong> and <strong>Hibernate</strong> for <strong>Oracle/SQL</strong> databases.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="read-more-btn">Read More</button>
+            </div>
+        </section>
+
+        <section class="section education animate-on-scroll hidden">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>Master’s in Computer Science</h3>
+                <p>Governor’s State University, Chicago, IL</p>
+                <p>May - 2022</p>
+            </div>
+            <div class="education-item">
+                <h3>Bachelor’s in Computer Science</h3>
+                <p>CMRIT, Hyderabad, India</p>
+                <p>June - 2017</p>
+            </div>
+        </section>
+
+        <section class="section contact-form animate-on-scroll hidden">
+            <h2>Get in Touch</h2>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_FORM_ID" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="_replyto" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Send Message</button>
+                <p style="font-size: 0.9em; text-align: center; color: var(--contact-text);">
+                    This form uses <a href="https://formspree.io/" target="_blank" style="color: var(--link-color);">Formspree.io</a> for backend functionality.
+                    <br>
+                    <strong>IMPORTANT:</strong> You must replace "YOUR_FORMSPREE_FORM_ID" in the form's action attribute with your actual Formspree ID.
+                    After submitting the first message, Formspree will ask you to confirm your email address.
+                </p>
+            </form>
+        </section>
+    </div>
+
+    <button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top">↑</button>
+
+    <script>
+        // --- Dark Mode Toggle ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference on load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.classList.replace('light-mode', savedTheme);
+            darkModeToggle.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+        } else {
+            // Default to light mode if no preference is saved
+            body.classList.add('light-mode');
+            darkModeToggle.textContent = '🌙';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                body.classList.replace('light-mode', 'dark-mode');
+                darkModeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.replace('dark-mode', 'light-mode');
+                darkModeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        // --- Scroll to Top Button ---
+        let scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        window.onscroll = function() { scrollFunction(); };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+        // --- Scroll-Triggered Animations ---
+        const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.1 // trigger when 10% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Special handling for skill bars
+                    if (entry.target.classList.contains('skills')) {
+                        document.querySelectorAll('.skill-item').forEach(skillItem => {
+                            const fill = skillItem.querySelector('.skill-bar-fill');
+                            if (fill) {
+                                const proficiency = fill.getAttribute('data-proficiency');
+                                fill.style.width = proficiency + '%';
+                                skillItem.classList.add('animated'); // Add class to trigger animation
+                            }
+                        });
+                    }
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(section => {
+            section.classList.add('hidden'); // Ensure initial hidden state
+            observer.observe(section);
+        });
+
+        // --- Expandable Project Details ---
+        document.querySelectorAll('.read-more-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const container = button.previousElementSibling; // The .project-details-container
+                container.classList.toggle('expanded');
+                if (container.classList.contains('expanded')) {
+                    button.textContent = 'Read Less';
+                } else {
+                    button.textContent = 'Read More';
+                }
+            });
+        });
+
+        // --- Initial Skill Bar Animation (Fallback if not using IntersectionObserver for skills) ---
+        // This is a fallback/initial animation, IntersectionObserver is preferred for skills
+        document.addEventListener('DOMContentLoaded', () => {
+             // If you want skills to animate without explicit scroll trigger, uncomment this:
+            // document.querySelectorAll('.skill-item').forEach(skillItem => {
+            //     const fill = skillItem.querySelector('.skill-bar-fill');
+            //     if (fill) {
+            //         const proficiency = fill.getAttribute('data-proficiency');
+            //         fill.style.width = proficiency + '%';
+            //     }
+            // });
+        });
+    </script>
+</body>
+</html>
